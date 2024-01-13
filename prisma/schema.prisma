@@ -8,11 +8,13 @@ datasource db {
 }
 
 model Video {
-  id       Int    @id @default(dbgenerated())
+  id       Int    @id @default(autoincrement())
   userId   Int
   title    String
   cover    String
+  mime     String
   filename String
+  filesize Int
 
   @@map("videos")
 }
