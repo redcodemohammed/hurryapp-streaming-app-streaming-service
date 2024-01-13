@@ -13,7 +13,6 @@ model Video {
   title    String
   cover    String
   filename String
-  user     User   @relation(fields: [userId], references: [id])
 
   @@map("videos")
 }
@@ -24,7 +23,6 @@ model User {
   username  String   @db.LongText
   password  String   @db.LongText
   createdUp DateTime @default(now()) @updatedAt
-  Video     Video[]
 
   @@map("users")
 }
