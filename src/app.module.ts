@@ -4,7 +4,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { databaseConfig, googleOAuthConfig, jwtConfig } from './config';
+import { databaseConfig, jwtConfig } from './config';
 import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
@@ -12,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [databaseConfig, googleOAuthConfig, jwtConfig],
+      load: [databaseConfig, jwtConfig],
       isGlobal: true,
       cache: true,
     }),

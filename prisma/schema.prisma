@@ -1,56 +1,30 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?       @unique
-  emailVerified DateTime?
-  accounts      Account[]
-  sessions      Session[]
-  localAccount  LocalAccount?
+model Video {
+  id       Int    @id @default(dbgenerated())
+  userId   Int
+  title    String
+  cover    String
+  filename String
+  user     User   @relation(fields: [userId], references: [id])
 
-  createdAt DateTime @default(now())
+  @@map("videos")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.LongText
+  username  String   @db.LongText
+  password  String   @db.LongText
+  createdUp DateTime @default(now()) @updatedAt
+  Video     Video[]
 
   @@map("users")
-}
-
-type Account {
-  provider          AccountProvider
-  providerAccountId String
-  access_token      String?
-  scope             String?
-
-  createdAt DateTime @default(now())
-}
-
-type LocalAccount {
-  password String
-  createAt DateTime @default(now())
-}
-
-model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique
-  userId       String   @db.ObjectId
-  deviceName   String?
-  deviceIP     String?
-  createdAt    DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("sessions")
-}
-
-enum AccountProvider {
-  GOOGLE
 }

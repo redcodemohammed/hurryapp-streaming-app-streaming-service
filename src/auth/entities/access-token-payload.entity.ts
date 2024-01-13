@@ -1,6 +1,3 @@
 export class AccessTokenPayloadEntity {
-  constructor(
-    public sub: string,
-    public email: string,
-  ) {}
+  constructor(public sub: number) {}
 }
