@@ -35,6 +35,12 @@ export class UploadService {
     }
   }
 
+  async findAllVideos(id: number) {
+    return await this.prismaService.video.findMany({
+      where: { userId: id },
+    });
+  }
+
   getVideoFilePath(filename: string): string {
     return `/tmp/uploads/videos/${filename}`;
   }

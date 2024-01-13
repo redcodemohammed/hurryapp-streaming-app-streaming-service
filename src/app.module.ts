@@ -9,6 +9,10 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 import { VideosModule } from './videos/videos.module';
+import { ChatModule } from './chat/chat.module';
+import { PlayerModule } from './player/player.module';
+import { PartyModule } from './party/party.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -44,6 +48,10 @@ import { VideosModule } from './videos/videos.module';
     AuthModule,
     PrismaModule,
     VideosModule,
+    ChatModule,
+    PlayerModule,
+    PartyModule,
+    RedisModule,
   ],
   controllers: [],
   providers: [

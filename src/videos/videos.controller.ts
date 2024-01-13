@@ -48,6 +48,11 @@ export class VideosController {
     return this.uploadService.uploadVideo(video, cover, dto, user);
   }
 
+  @Get()
+  async findAllVideos(@CurrentUser() user: User) {
+    return this.uploadService.findAllVideos(user.id);
+  }
+
   @Get('/:id')
   async findVideo(@Param('id') id: number) {
     return this.uploadService.findVideo(id);
